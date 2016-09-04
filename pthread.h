@@ -661,6 +661,9 @@ enum
      * ===============
      * ===============
      */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
     int  pthread_init (void);
     void  pthread_terminate (void);
@@ -960,6 +963,9 @@ enum
 
 #endif /*PTE_LEVEL >= PTE_LEVEL_MAX - 1 */
 
+#ifdef __cplusplus
+}
+#endif
 #if PTE_LEVEL >= PTE_LEVEL_MAX
 
 

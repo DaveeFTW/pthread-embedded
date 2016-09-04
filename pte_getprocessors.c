@@ -63,7 +63,7 @@ pte_getprocessors (int *count)
 {
   int result = 0;
 
-  *count = 1;
+  *count = 3;
 
   return (result);
 }
