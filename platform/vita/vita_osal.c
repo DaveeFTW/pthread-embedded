@@ -38,6 +38,8 @@
 #include <psp2/kernel/rng.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/kernel/error.h>
+#include <psp2/kernel/processmgr.h>
+
 #include <vitasdkutils.h>
 
 /* For ftime */
@@ -55,31 +57,10 @@
 #define PTHREAD_EVID_CANCEL 0x1
 
 #if 1
-#define PSP_DEBUG(x) psvDebugScreenPrintf(x)
+#define PSP_DEBUG(x) printf(x)
 #else
 #define PSP_DEBUG(x)
 #endif
-
-// TODO: add in vitasdk somewhere?
-int vita_exit_delete_thread(int status);
-
-int do_log(const char *fmt, ...)
-{
-	char buf[256];
-
-	va_list opt;
-	va_start(opt, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, opt);
-	va_end(opt);
-
-	SceUID fd = sceIoOpen("ux0:/pth_log.txt", SCE_O_APPEND | SCE_O_CREAT | SCE_O_WRONLY, 0777);
-
-	if (fd >= 0)
-	{
-		sceIoWrite(fd, buf, strlen(buf));
-		sceIoClose(fd);
-	}
-}
 
 typedef struct tlsKeyEntry
 {
@@ -194,8 +175,6 @@ pte_osResult pte_osThreadCreate(pte_osThreadEntryPoint entryPoint,
 		else
 		{
 			PSP_DEBUG("sceKernelCreateThread: PTE_OS_GENERAL_FAILURE\n");
-			psvDebugScreenPrintf("error 0x%08X\n", thid);
-			sceKernelDelayThread(5*1000*1000);
 			return PTE_OS_GENERAL_FAILURE;
 		}
 	}
@@ -342,12 +321,12 @@ void pte_osThreadSleep(unsigned int msecs)
 
 int pte_osThreadGetMinPriority()
 {
-	return pte_osThreadGetDefaultPriority()-10;
+	return pte_osThreadGetDefaultPriority()-32;
 }
 
 int pte_osThreadGetMaxPriority()
 {
-	return pte_osThreadGetDefaultPriority()+11;
+	return pte_osThreadGetDefaultPriority()+31;
 }
 
 int pte_osThreadGetDefaultPriority()
