@@ -40,7 +40,7 @@
 #include <psp2/kernel/error.h>
 #include <psp2/kernel/processmgr.h>
 
-#include <vitasdkutils.h>
+#include <vitasdk/utils.h>
 
 /* For ftime */
 #include <sys/time.h>
