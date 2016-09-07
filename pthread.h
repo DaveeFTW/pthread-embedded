@@ -980,6 +980,9 @@ extern "C" {
 
 #ifdef __cplusplus
 
+	bool operator==(const pte_handle_t& l, const pte_handle_t& r);
+	bool operator<(const pte_handle_t& l, const pte_handle_t& r);
+
     /*
      * Internal exceptions
      */

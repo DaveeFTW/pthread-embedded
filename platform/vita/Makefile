@@ -158,11 +158,14 @@ CANCEL_OBJS = \
 OS_OBJS = \
   vita_osal.o
 
-OBJS = $(MUTEX_OBJS) $(MUTEXATTR_OBJS) $(THREAD_OBJS) $(SUPPORT_OBJS) $(TLS_OBJS) $(MISC_OBJS) $(SEM_OBJS) $(BARRIER_OBJS) $(SPIN_OBJS) $(CONDVAR_OBJS) $(RWLOCK_OBJS) $(CANCEL_OBJS) $(OS_OBJS)
+CXX_OBJS = pte_cpp_binding.o
+
+OBJS = $(MUTEX_OBJS) $(MUTEXATTR_OBJS) $(THREAD_OBJS) $(SUPPORT_OBJS) $(TLS_OBJS) $(MISC_OBJS) $(SEM_OBJS) $(BARRIER_OBJS) $(SPIN_OBJS) $(CONDVAR_OBJS) $(RWLOCK_OBJS) $(CANCEL_OBJS) $(OS_OBJS) $(CXX_OBJS)
 
 
 PREFIX ?= ${VITASDK}/arm-vita-eabi
 CC = arm-vita-eabi-gcc
+CXX = arm-vita-eabi-g++
 AR = arm-vita-eabi-ar
 
 CFLAGS = $(GLOBAL_CFLAGS) -Wl,-q -Wall -O3 -ffat-lto-objects -flto -fno-strict-aliasing -I. -I../.. -I../helper
