@@ -103,7 +103,7 @@ pthread_mutex_unlock (pthread_mutex_t * mutex)
               if (mx->kind != PTHREAD_MUTEX_RECURSIVE
                   || 0 == --mx->recursive_count)
                 {
-                  mx->ownerThread.p = NULL;
+                  mx->ownerThread = 0;
 
                   if (PTE_ATOMIC_EXCHANGE (&mx->lock_idx,0) < 0)
                     {

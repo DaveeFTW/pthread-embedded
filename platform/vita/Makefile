@@ -32,7 +32,6 @@ SUPPORT_OBJS = \
   pte_new.o \
   pte_threadStart.o \
   global.o \
-  pte_reuse.o \
   pthread_init.o \
   pthread_terminate.o
 
@@ -158,9 +157,7 @@ CANCEL_OBJS = \
 OS_OBJS = \
   vita_osal.o
 
-CXX_OBJS = pte_cpp_binding.o
-
-OBJS = $(MUTEX_OBJS) $(MUTEXATTR_OBJS) $(THREAD_OBJS) $(SUPPORT_OBJS) $(TLS_OBJS) $(MISC_OBJS) $(SEM_OBJS) $(BARRIER_OBJS) $(SPIN_OBJS) $(CONDVAR_OBJS) $(RWLOCK_OBJS) $(CANCEL_OBJS) $(OS_OBJS) $(CXX_OBJS)
+OBJS = $(MUTEX_OBJS) $(MUTEXATTR_OBJS) $(THREAD_OBJS) $(SUPPORT_OBJS) $(TLS_OBJS) $(MISC_OBJS) $(SEM_OBJS) $(BARRIER_OBJS) $(SPIN_OBJS) $(CONDVAR_OBJS) $(RWLOCK_OBJS) $(CANCEL_OBJS) $(OS_OBJS)
 
 
 PREFIX ?= ${VITASDK}/arm-vita-eabi

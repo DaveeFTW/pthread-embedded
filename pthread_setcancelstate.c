@@ -87,7 +87,7 @@ pthread_setcancelstate (int state, int *oldstate)
 {
   int result = 0;
   pthread_t self = pthread_self ();
-  pte_thread_t * sp = (pte_thread_t *) self.p;
+  pte_thread_t * sp = (pte_thread_t *) self;
 
   if (sp == NULL
       || (state != PTHREAD_CANCEL_ENABLE && state != PTHREAD_CANCEL_DISABLE))

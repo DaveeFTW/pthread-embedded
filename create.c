@@ -109,7 +109,7 @@ pthread_create (pthread_t * tid,
    */
   if (tid != NULL)
     {
-      tid->x = 0;
+      *tid = 0;
     }
 
   if (attr != NULL)
@@ -121,12 +121,12 @@ pthread_create (pthread_t * tid,
       a = NULL;
     }
 
-  if ((thread = pte_new ()).p == NULL)
+  if ((thread = pte_new ()) == 0)
     {
       goto FAIL0;
     }
 
-  tp = (pte_thread_t *) thread.p;
+  tp = (pte_thread_t *) thread;
 
   priority = tp->sched_priority;
 
@@ -167,7 +167,7 @@ pthread_create (pthread_t * tid,
            * system adjustment. This is not the case for POSIX threads.
            */
           self = pthread_self ();
-          priority = ((pte_thread_t *) self.p)->sched_priority;
+          priority = ((pte_thread_t *) self)->sched_priority;
         }
 
 

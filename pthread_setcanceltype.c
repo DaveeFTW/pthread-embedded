@@ -88,7 +88,7 @@ pthread_setcanceltype (int type, int *oldtype)
 {
   int result = 0;
   pthread_t self = pthread_self ();
-  pte_thread_t * sp = (pte_thread_t *) self.p;
+  pte_thread_t * sp = (pte_thread_t *) self;
 
 #ifndef PTE_SUPPORT_ASYNC_CANCEL
   if (type == PTHREAD_CANCEL_ASYNCHRONOUS)

@@ -117,12 +117,12 @@ pthread_delay_np (struct timespec *interval)
 
   wait_time = secs_in_millisecs + millisecs;
 
-  if (NULL == (self = pthread_self ()).p)
+  if (0 == (self = pthread_self ()))
     {
       return ENOMEM;
     }
 
-  sp = (pte_thread_t *) self.p;
+  sp = (pte_thread_t *) self;
 
   if (sp->cancelState == PTHREAD_CANCEL_ENABLE)
     {

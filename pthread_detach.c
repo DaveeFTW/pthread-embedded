@@ -75,13 +75,12 @@ pthread_detach (pthread_t thread)
 {
   int result;
   unsigned char destroyIt = PTE_FALSE;
-  pte_thread_t * tp = (pte_thread_t *) thread.p;
+  pte_thread_t * tp = (pte_thread_t *) thread;
 
 
   pte_osMutexLock (pte_thread_reuse_lock);
 
-  if (NULL == tp
-      || thread.x != tp->ptHandle.x)
+  if (NULL == tp)
     {
       result = ESRCH;
     }

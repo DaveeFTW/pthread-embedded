@@ -85,13 +85,12 @@ pthread_join (pthread_t thread, void **value_ptr)
 {
   int result;
   pthread_t self;
-  pte_thread_t * tp = (pte_thread_t *) thread.p;
+  pte_thread_t * tp = (pte_thread_t *) thread;
 
 
   pte_osMutexLock (pte_thread_reuse_lock);
 
-  if (NULL == tp
-      || thread.x != tp->ptHandle.x)
+  if (NULL == tp)
     {
       result = ESRCH;
     }
@@ -113,7 +112,7 @@ pthread_join (pthread_t thread, void **value_ptr)
        */
       self = pthread_self();
 
-      if (NULL == self.p)
+      if (0 == self)
         {
           result = ENOENT;
         }

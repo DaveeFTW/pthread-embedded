@@ -56,7 +56,7 @@ int pte_cancellable_wait (pte_osSemaphoreHandle semHandle, unsigned int* timeout
   pte_thread_t * sp;
 
   self = pthread_self();
-  sp = (pte_thread_t *) self.p;
+  sp = (pte_thread_t *) self;
 
   if (sp != NULL)
     {

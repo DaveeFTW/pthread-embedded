@@ -75,7 +75,7 @@ pthread_testcancel (void)
  */
 {
   pthread_t self = pthread_self ();
-  pte_thread_t * sp = (pte_thread_t *) self.p;
+  pte_thread_t * sp = (pte_thread_t *) self;
 
   if (sp == NULL)
     {

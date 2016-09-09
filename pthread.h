@@ -392,11 +392,7 @@ enum
      * that available with a simple pointer. It should scale for either
      * IA-32 or IA-64.
      */
-    typedef struct
-      {
-        void * p;                   /* Pointer to actual object */
-        unsigned int x;             /* Extra information - reuse count etc */
-      } pte_handle_t;
+    typedef unsigned int pte_handle_t;
 
     typedef pte_handle_t pthread_t;
     typedef struct pthread_attr_t_ * pthread_attr_t;
@@ -979,10 +975,6 @@ extern "C" {
 #  define _timeb timeb
 
 #ifdef __cplusplus
-
-	bool operator==(const pte_handle_t& l, const pte_handle_t& r);
-	bool operator<(const pte_handle_t& l, const pte_handle_t& r);
-
     /*
      * Internal exceptions
      */

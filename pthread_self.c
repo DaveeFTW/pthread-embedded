@@ -88,7 +88,7 @@ pthread_self (void)
        * by pte_new!
        */
       self = pte_new ();
-      sp = (pte_thread_t *) self.p;
+      sp = (pte_thread_t *) self;
 
       if (sp != NULL)
         {

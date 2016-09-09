@@ -80,7 +80,7 @@ pthread_cancel (pthread_t thread)
       return result;
     }
 
-  if ((self = pthread_self ()).p == NULL)
+  if ((self = pthread_self ()) == 0)
     {
       return ENOMEM;
     };
@@ -101,7 +101,7 @@ pthread_cancel (pthread_t thread)
    */
   cancel_self = pthread_equal (thread, self);
 
-  tp = (pte_thread_t *) thread.p;
+  tp = (pte_thread_t *) thread;
 
   /*
    * Lock for async-cancel safety.

@@ -84,7 +84,7 @@ pthread_setspecific (pthread_key_t key, const void *value)
        * thread if one wasn't explicitly created
        */
       self = pthread_self ();
-      if (self.p == NULL)
+      if (self == 0)
         {
           return ENOENT;
         }
@@ -116,7 +116,7 @@ pthread_setspecific (pthread_key_t key, const void *value)
 
   if (key != NULL)
     {
-      if (self.p != NULL && key->destructor != NULL && value != NULL)
+      if (self != 0 && key->destructor != NULL && value != NULL)
         {
           /*
            * Only require associations if we have to
@@ -131,7 +131,7 @@ pthread_setspecific (pthread_key_t key, const void *value)
 
           if (pthread_mutex_lock(&(key->keyLock)) == 0)
             {
-              pte_thread_t * sp = (pte_thread_t *) self.p;
+              pte_thread_t * sp = (pte_thread_t *) self;
 
               (void) pthread_mutex_lock(&(sp->threadLock));
 

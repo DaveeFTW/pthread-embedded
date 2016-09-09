@@ -52,32 +52,23 @@ pthread_t
 pte_new (void)
 {
   pthread_t t;
-  pthread_t nil = {NULL, 0};
+  pthread_t nil = 0;
   pte_thread_t * tp;
 
   /*
    * If there's a reusable pthread_t then use it.
    */
-  t = pte_threadReusePop ();
 
-  if (NULL != t.p)
+  /* No reuse threads available */
+  tp = (pte_thread_t *) calloc (1, sizeof(pte_thread_t));
+
+  if (tp == NULL)
     {
-      tp = (pte_thread_t *) t.p;
+      return nil;
     }
-  else
-    {
-      /* No reuse threads available */
-      tp = (pte_thread_t *) calloc (1, sizeof(pte_thread_t));
 
-      if (tp == NULL)
-        {
-          return nil;
-        }
-
-      /* ptHandle.p needs to point to it's parent pte_thread_t. */
-      t.p = tp->ptHandle.p = tp;
-      t.x = tp->ptHandle.x = 0;
-    }
+  /* ptHandle.p needs to point to it's parent pte_thread_t. */
+  t = tp->ptHandle = tp;
 
   /* Set default state. */
   tp->sched_priority = pte_osThreadGetMinPriority();

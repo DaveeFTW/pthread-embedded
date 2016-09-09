@@ -92,7 +92,7 @@ int pte_threadStart (void *vthreadParms)
   void * status = (void *) 0;
 
   self = threadParms->tid;
-  sp = (pte_thread_t *) self.p;
+  sp = (pte_thread_t *) self;
   start = threadParms->start;
   arg = threadParms->arg;
 //  free (threadParms);

@@ -75,11 +75,11 @@ pte_callUserDestroyRoutines (pthread_t thread)
 {
   ThreadKeyAssoc * assoc;
 
-  if (thread.p != NULL)
+  if (thread != 0)
     {
       int assocsRemaining;
       int iterations = 0;
-      pte_thread_t * sp = (pte_thread_t *) thread.p;
+      pte_thread_t * sp = (pte_thread_t *) thread;
 
       /*
        * Run through all Thread<-->Key associations

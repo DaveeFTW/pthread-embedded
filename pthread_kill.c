@@ -83,10 +83,9 @@ pthread_kill (pthread_t thread, int sig)
 
   pte_osMutexLock (pte_thread_reuse_lock);
 
-  tp = (pte_thread_t *) thread.p;
+  tp = (pte_thread_t *) thread;
 
-  if (NULL == tp
-      || thread.x != tp->ptHandle.x
+  if (0 == tp
       || 0 == tp->threadId)
     {
       result = ESRCH;

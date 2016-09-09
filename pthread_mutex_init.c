@@ -71,7 +71,7 @@ pthread_mutex_init (pthread_mutex_t * mutex, const pthread_mutexattr_t * attr)
       mx->recursive_count = 0;
       mx->kind = (attr == NULL || *attr == NULL
                   ? PTHREAD_MUTEX_DEFAULT : (*attr)->kind);
-      mx->ownerThread.p = NULL;
+      mx->ownerThread = 0;
 
       pte_osSemaphoreCreate(0,&mx->handle);
 

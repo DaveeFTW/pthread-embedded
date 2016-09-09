@@ -78,7 +78,7 @@ pte_setthreadpriority (pthread_t thread, int policy, int priority)
 {
   int prio;
   int result;
-  pte_thread_t * tp = (pte_thread_t *) thread.p;
+  pte_thread_t * tp = (pte_thread_t *) thread;
 
   prio = priority;
 
